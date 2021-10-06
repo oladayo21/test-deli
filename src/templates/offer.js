@@ -1,26 +1,33 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 const OfferTemplate = ({ data }) => {
+  const { markdownRemark } = data; // data.markdownRemark holds our post data
+  const { frontmatter, html } = markdownRemark;
   return (
-    <main>
-      <h1>{data.strapiOffers.Name}</h1>
-      <p>This is just for a test</p>
-      <strong>
-        This page was published {data.strapiOffers.created_at} and has a slug of{" "}
-        {data.strapiOffers.slug}
-      </strong>
-    </main>
+    <div className="blog-post-container">
+      <div className="blog-post">
+        <h1>{frontmatter.title}</h1>
+        <h2>{frontmatter.date}</h2>
+        <div
+          className="blog-post-content"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </div>
+    </div>
   );
 };
 
 export default OfferTemplate;
 
 export const query = graphql`
-  query MyQuery($slug: String!) {
-    strapiOffers(slug: { eq: $slug }) {
-      Name
-      created_at(fromNow: true)
-      slug
+  query ($slug: String!) {
+    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        slug
+        title
+      }
     }
   }
 `;

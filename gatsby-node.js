@@ -5,11 +5,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(
     `
-      query OfferPageQuery {
-        allStrapiOffers {
+      {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          limit: 1000
+        ) {
           edges {
             node {
-              slug
+              frontmatter {
+                slug
+              }
             }
           }
         }
@@ -21,13 +26,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
   const offerPageTemplate = path.resolve("src/templates/offer.js");
-  result.data.allStrapiOffers.edges.forEach(({ node }) => {
-    const path = node.slug;
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path,
+      path: node.frontmatter.slug,
       component: offerPageTemplate,
       context: {
-        slug: node.slug,
+        slug: node.frontmatter.slug,
       },
     });
   });

@@ -3,13 +3,15 @@ import { Link, graphql } from "gatsby";
 
 const IndexpPage = ({ data }) => {
   console.log(data);
+  const { allMarkdownRemark } = data;
   return (
     <main>
-      <p>Hello, Welocme</p>
+      <h1>Hi people</h1>
+      <p>Welcome to your new Gatsby blog with Markdown pages.</p>
       <ul>
-        {data.allStrapiOffers.edges.map((document) => (
-          <li>
-            <Link to={`${document.node.slug}`}>{document.node.slug}</Link>
+        {allMarkdownRemark.edges.map(({ node }) => (
+          <li key={node.frontmatter.slug}>
+            <Link to={node.frontmatter.slug}>{node.frontmatter.slug}</Link>
           </li>
         ))}
       </ul>
@@ -19,13 +21,13 @@ const IndexpPage = ({ data }) => {
 export default IndexpPage;
 
 export const pageQuery = graphql`
-  query MyQuery2 {
-    allStrapiOffers {
+  query SlugQuery {
+    allMarkdownRemark {
       edges {
         node {
-          id
-          slug
-          Name
+          frontmatter {
+            slug
+          }
         }
       }
     }

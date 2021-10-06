@@ -1,0 +1,44 @@
+name: Deployment
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Set Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.18.0"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Gatsby
+        run: npm run build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: public
+  
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: public
+      - name: Test Files Present
+        run: ls public
+

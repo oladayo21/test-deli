@@ -4,12 +4,20 @@ module.exports = {
     title: "Test Deli",
   },
   plugins: [
+    // {
+    //   resolve: "gatsby-source-strapi",
+    //   options: {
+    //     apiURL: "http://localhost:1337",
+    //     collectionTypes: ["offers"],
+    //   },
+    // },
     {
-      resolve: "gatsby-source-strapi",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        apiURL: "http://localhost:1337",
-        collectionTypes: ["offers"],
+        name: `markdown-pages`,
+        path: `${__dirname}/src/markdown-pages`,
       },
     },
+    `gatsby-transformer-remark`,
   ],
 };
