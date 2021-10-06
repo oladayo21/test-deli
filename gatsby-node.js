@@ -27,12 +27,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
   const offerPageTemplate = path.resolve("src/templates/offer.js");
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
-      path: node.frontmatter.slug,
-      component: offerPageTemplate,
-      context: {
-        slug: node.frontmatter.slug,
-      },
-    });
+    const { slug } = node.frontmatter;
+    console.log(slug);
+    if (!slug.startsWith("/stest")) {
+      createPage({
+        path: node.frontmatter.slug,
+        component: offerPageTemplate,
+        context: {
+          slug: node.frontmatter.slug,
+        },
+      });
+    }
   });
 };

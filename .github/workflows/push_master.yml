@@ -40,5 +40,7 @@ jobs:
         with:
           path: public
       - name: Test Files Present
-        run: ls public
+        run: "[[ $(ls public/test*) ]] && exit 1"
+      - name: Am I here
+        run: ls
 
