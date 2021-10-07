@@ -2,7 +2,7 @@
 dir_name=./public
 
 function countDirectories(){
-    echo $(find ${dir_name} -name 'test-*' -type d | wc -l)
+    echo $(find ${dir_name} -name 'test*' -type d | wc -l)
     
 }
 function test(){
