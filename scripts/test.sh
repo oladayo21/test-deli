@@ -7,6 +7,6 @@ function countDirectories(){
 }
 function test(){
     dir_count=$(countDirectories)
-[[ dir_count -gt 0 ]] && {echo "Test page built"; exit 1;} || {echo "No test Pages built"; exit 0;}
+[[ dir_count -gt 0 ]] && echo "Test page built" && exit 1 || echo "No test Pages built" && exit 0
 }
 test
