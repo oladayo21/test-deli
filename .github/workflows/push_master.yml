@@ -40,7 +40,7 @@ jobs:
         with:
           path: public
       - name: Test Files Present
-        run: "[[ -d 'public/artifact/test*']] && exit 1"
+        run: "bash ./scripts/test.sh"
       - name: Am I here
         run: ls public/artifact
 
