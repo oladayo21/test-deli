@@ -29,7 +29,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     const { slug } = node.frontmatter;
     console.log(slug);
-    if (!slug.startsWith("/test")) {
+    if (!slug.startsWith("/stest")) {
       createPage({
         path: node.frontmatter.slug,
         component: offerPageTemplate,
