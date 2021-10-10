@@ -42,7 +42,7 @@ jobs:
       - name: Which files
         run: ls public
       - name: Test Files Present
-        run: "[[ ! -n $(find public/artifact -maxdepth 1 -name 'test' -type d) ]]"
+        run: "[[ ! -n $(find public/artifact -maxdepth 1 -name 'testing' -type d) ]]"
       - name: Am I here
         run: ls public/artifact
 
