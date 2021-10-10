@@ -43,7 +43,7 @@ jobs:
         with:
           path: public
       - name: Test Files Present
-        run: "[[  -n $(find public -maxdepth 1 -name 'test' -type d) ]]"
+        run: "[[  -n $(find public -maxdepth 1 -name 'testing' -type d) ]]"
       - name: Am I here
         if: ${{ matrix.os == 'macos-latest' }}
         run: ls public/artifact
