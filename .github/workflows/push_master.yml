@@ -29,10 +29,7 @@ jobs:
   
   test:
     name: test
-    strategy:
-      matrix:
-        os: [macos-latest,ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Checkout branch
@@ -45,7 +42,6 @@ jobs:
       - name: Test Files Present
         run: "[[  -n $(find public/artifact -maxdepth 1 -name 'testing' -type d) ]]"
       - name: Am I here
-        if: ${{ matrix.os == 'macos-latest' }}
         run: ls public/artifact
 
 
