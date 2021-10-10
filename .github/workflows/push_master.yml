@@ -29,7 +29,10 @@ jobs:
   
   test:
     name: test
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [macos-latest,ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     needs: build
     steps:
       - name: Checkout branch
@@ -40,7 +43,11 @@ jobs:
         with:
           path: public
       - name: Test Files Present
-        run: "bash ./scripts/test.sh"
+        run: |
+              "bash ./scripts/test.sh"
+              echo ${{ matrix.os }}
       - name: Am I here
+        if: ${{ matrix.os == 'macos-latest' }}
         run: ls public/artifact
+
 
