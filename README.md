@@ -43,4 +43,4 @@ The idea here is to have the structure similar to the data received from kitchen
 
 ## Deli Structure
 
-(./deli.png)
+![Tux, the Linux mascot](./deli.png)
