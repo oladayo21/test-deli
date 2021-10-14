@@ -1,6 +1,7 @@
 ## Proposed Directory Structure
 
 ```bash
+|── plugins
 ├── src
 │    ├── templates
 │         ├── Offerpage.tsx
@@ -43,4 +44,4 @@ The idea here is to have the structure similar to the data received from kitchen
 
 ## Deli Structure
 
-(./deli.png)
+![Tux, the Linux mascot](./deli.png)
