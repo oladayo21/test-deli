@@ -1,6 +1,7 @@
 ## Proposed Directory Structure
 
 ```bash
+|── plugins
 ├── src
 │    ├── templates
 │         ├── Offerpage.tsx
